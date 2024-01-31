@@ -1,0 +1,47 @@
+import java.util.*;
+public class MeanMedianMode {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+       
+        System.out.println("Enter the array of numbers: ");
+        String[] numbersString = scanner.nextLine().split(" ");
+        int[] numbers = new int[numbersString.length];
+        for (int i = 0; i < numbersString.length; i++) {
+            numbers[i] = Integer.parseInt(numbersString[i]);
+        }
+       
+        double mean = 0;
+        for (int number : numbers) {
+            mean += number;
+        }
+        mean /= numbers.length;
+       
+        Arrays.sort(numbers);
+        int medianIndex = numbers.length / 2;
+        double median = numbers[medianIndex];
+        if (numbers.length % 2 == 0) {
+            median = (median + numbers[medianIndex - 1]) / 2;
+        }
+                  int[] modes = new int[numbers.length];
+        int maxCount = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            int count = 0;
+            for (int j = 0; j < numbers.length; j++) {
+                if (numbers[i] == numbers[j]) {
+                    count++;
+                }
+            }
+            if (count > maxCount) {
+                maxCount = count;
+                modes = new int[1];
+                modes[0] = numbers[i];
+            } else if (count == maxCount) {
+                modes = Arrays.copyOf(modes, modes.length + 1);
+                modes[modes.length - 1] = numbers[i];
+            }
+        }
+        System.out.println("Mean = " + mean);
+        System.out.println("Median = " + median);
+        System.out.println("Mode = " + Arrays.toString(modes));
+    }
+}
