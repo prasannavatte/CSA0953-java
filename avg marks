@@ -1,0 +1,25 @@
+import java.util.*;
+
+class Average {
+    public static void main(String[] args) {   
+        int[] marks = new int[4];  
+        Scanner s = new Scanner(System.in);
+        int sum = 0;
+        
+        System.out.println("Enter 4 numbers:");
+
+        for (int i = 0; i < marks.length; i++) { 
+            marks[i] = s.nextInt();
+            sum = sum + marks[i];
+        }
+        
+        double average = (double) sum / marks.length; 
+        System.out.println("Average marks is: " + average); 
+    }
+}
+
+
+OUTPUT:
+Enter 4 numbers:
+56 67 89 90
+Average marks is: 75.5
